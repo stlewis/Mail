@@ -16,7 +16,8 @@ h2. Examples
 
 h3. Sending A Basic Text Email:
 
-bc. $to      = "joe@example.com";
+bc.. 
+    $to      = "joe@example.com";
     $from    = "jim@example.com";
     $subject = "Testing Text Email";
     $body    = "This is a test email body that will be in text format";
@@ -28,7 +29,8 @@ so let's take a look at a slightly more complicated example...
 
 h3. Sending An Email With Text and HTML:
 
-bc. $to        = "joe@example.com";
+bc.. 
+    $to        = "joe@example.com";
     $from      = "jim@example.com";
     $subject   = "Testing Text Email";
     $text_body = "This is a test email body that will be in text format";
@@ -41,7 +43,8 @@ that only support text will render the text version instead. Good luck making th
 
 h3. Adding Additional Headers
 
-bc. $to        = "joe@example.com";
+bc.. 
+    $to        = "joe@example.com";
     $from      = "jim@example.com";
     $subject   = "Testing Text Email";
     $text_body = "This is a test email body that will be in text format";
@@ -62,7 +65,8 @@ the string you pass _must_ be a valid header string.
 h3. Adding Attachments
 
 
-bc. $to        = "joe@example.com";
+bc.. 
+    $to        = "joe@example.com";
     $from      = "jim@example.com";
     $subject   = "Testing Text Email";
     $text_body = "This is a test email body that will be in text format";
