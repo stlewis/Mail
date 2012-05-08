@@ -16,7 +16,7 @@ h2. Examples
 
 h3. Sending A Basic Text Email:
 
-<code>
+bc.
   <?php
     $to      = "joe@example.com";
     $from    = "jim@example.com";
@@ -25,14 +25,13 @@ h3. Sending A Basic Text Email:
     $mail    = new Mail($to, $from, $subject, $body);
     $mail->send();
   ?>
-</code>
 
 It's that simple.  Granted, it's not a heck of a lot harder to do the same thing just using PHP's built-in mail() function,
 so let's take a look at a slightly more complicated example...
 
 h3. Sending An Email With Text and HTML:
 
-<code>
+bc.
   <?php
     $to        = "joe@example.com";
     $from      = "jim@example.com";
@@ -42,14 +41,13 @@ h3. Sending An Email With Text and HTML:
     $mail      = new Mail($to, $from, $subject, $text_body, $html_body);
     $mail->send();
   ?>
-</code>
 
 Given the code above, email clients that can support HTML in their messages will get the HTML version of the email, whereas email clients
 that only support text will render the text version instead. Good luck making that happen with just one extra line of code using mail()!
 
 h3. Adding Additional Headers
 
-<code>
+bc.
   <?php
     $to        = "joe@example.com";
     $from      = "jim@example.com";
@@ -63,7 +61,6 @@ h3. Adding Additional Headers
     $mail->add_header("Reply-To: email_me@example.com");
     $mail->send();
   ?>
-</code>
 
 Although I debated the usefulness of adding members like 'cc' and 'bcc' to the Mail class, I felt in the end that it made far
 more sense to just provide an easy way to add any header at all to the email.  In the example above, I show you how to add some
@@ -74,7 +71,7 @@ the string you pass _must_ be a valid header string.
 h3. Adding Attachments
 
 
-<code>
+bc.
   <?php
     $to        = "joe@example.com";
     $from      = "jim@example.com";
@@ -88,7 +85,6 @@ h3. Adding Attachments
 
     $mail->send();
   ?>
-</code>
 
 To add an attachment to an email, all you have to do is call the add_attachment() method with the absolute path to the file you'd like to
 attach as the only argument. It's that simple.
