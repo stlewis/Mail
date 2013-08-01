@@ -1,9 +1,6 @@
 h2. About Mail
 
-This class is a no-frills way to send emails. I wrote it originally as part of my DirtyMVC framework, because I wanted to
-reduce/eliminate that application's dependency on external libraries, (such as PEAR Mail). Because it occurs to me that there
-might be other people out there that could use a reasonably powerful email library, who need it to be portable and not dependent
-upon something as heavy as PEAR, I decided to extract my Mail class from the DirtyMVC framework, and I'm making it available here.
+This class is a no-frills way to send emails. I wrote it originally as part of my DirtyMVC framework, because I wanted to reduce/eliminate that application's dependency on external libraries, (such as PEAR Mail). Because it occurs to me that there might be other people out there that could use a reasonably powerful email library, who need it to be portable and not dependent upon something as heavy as PEAR, I decided to extract my Mail class from the DirtyMVC framework, and I'm making it available here.
 
 Just a quick overview of some of the features before I move on to examples:
 
@@ -62,10 +59,7 @@ bc..
     $mail->send();
 ?>
 
-p. Although I debated the usefulness of adding members like 'cc' and 'bcc' to the Mail class, I felt in the end that it made far
-more sense to just provide an easy way to add any header at all to the email.  In the example above, I show you how to add some
-common headers to an email, but you could add any header you need to using the same method.  The only thing to bear in mind is that
-the string you pass _must_ be a valid header string.
+p. Although I debated the usefulness of adding members like 'cc' and 'bcc' to the Mail class, I felt in the end that it made far more sense to just provide an easy way to add any header at all to the email.  In the example above, I show you how to add some common headers to an email, but you could add any header you need to using the same method.  The only thing to bear in mind is that the string you pass _must_ be a valid header string.
 
 
 h3. Adding Attachments
@@ -86,5 +80,4 @@ bc..
     $mail->send();
 ?>
 
-p. To add an attachment to an email, all you have to do is call the add_attachment() method with the absolute path to the file you'd like to
-attach as the only argument. It's that simple.
+p. To add an attachment to an email, all you have to do is call the add_attachment() method with the absolute path to the file you'd like to attach as the only argument. It's that simple.
