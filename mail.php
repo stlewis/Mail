@@ -127,7 +127,7 @@
 
     private function prepare_headers(){
       $this->set_default_headers();
-      $this->header_string = implode("\r\n", $this->headers)."\r\n";
+      $this->header_string = implode(PHP_EOL, $this->headers).PHP_EOL;
     }
 
     private function set_default_headers(){
