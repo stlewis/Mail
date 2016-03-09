@@ -98,6 +98,9 @@
       if(!empty($this->attachments)){
         $this->prepare_attachments();  
       }
+      if(!empty($this->base64_attachments)){
+        $this->prepare_base64_attachments();  
+      }
       $this->sent = mail($this->to, $this->subject, $this->body, $this->header_string);
       return $this->sent;
     }
@@ -117,8 +120,8 @@
     public function add_attachment($file){
       $this->attachments[] = $file;
     }
-    public function add_base64_attachment($file){
-      $this->base64_attachments[] = $file;
+    public function add_base64_attachment($name,$data){
+      $this->base64_attachments[] = array('name'=>$name, 'data'=>$data);
     }
     private function prepare_body(){
       $this->body .= "--PHP-mixed-{$this->boundary_hash}\n";
@@ -145,13 +148,12 @@
 
     private function prepare_base64_attachments(){
       foreach($this->base64_attachments as $attachment){
-        $file_name  = basename($attachment);
 
         $this->body .= "--PHP-mixed-{$this->boundary_hash}\n";
-        $this->body .= "Content-Type: application/octet-stream; name=\"{$file_name}\"\n";
+        $this->body .= "Content-Type: application/octet-stream; name=\"{$attachment['name']}\"\n";
         $this->body .= "Content-Transfer-Encoding: base64\n";
         $this->body .= "Content-Disposition: attachment\n\n";
-        $this->body .= chunk_split($attachment);
+        $this->body .= chunk_split($attachment['data']);
         $this->body .= "\n\n";
       }
       $this->body .= "--PHP-mixed-{$this->boundary_hash}--\n\n";
@@ -188,5 +190,3 @@
 
 
   }
-
-?>
