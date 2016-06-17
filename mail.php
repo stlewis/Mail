@@ -84,6 +84,7 @@
       $this->html_content  = $html_content;
       $this->body          = "";
       $this->attachments   = array();
+	  $this->base64_attachments   = array();
       $this->headers       = array();
       $this->boundary_hash = md5(date('r', time()));
     }
@@ -96,6 +97,9 @@
       $this->prepare_body();
       if(!empty($this->attachments)){
         $this->prepare_attachments();  
+      }
+      if(!empty($this->base64_attachments)){
+        $this->prepare_base64_attachments();  
       }
       $this->sent = mail($this->to, $this->subject, $this->body, $this->header_string);
       return $this->sent;
@@ -116,7 +120,9 @@
     public function add_attachment($file){
       $this->attachments[] = $file;
     }
-
+    public function add_base64_attachment($name,$data){
+      $this->base64_attachments[] = array('name'=>$name, 'data'=>$data);
+    }
     private function prepare_body(){
       $this->body .= "--PHP-mixed-{$this->boundary_hash}\n";
       $this->body .= "Content-Type: multipart/alternative; boundary=\"PHP-alt-{$this->boundary_hash}\"\n\n";
@@ -140,6 +146,19 @@
       $this->headers[] = "Content-type: multipart/mixed; boundary=\"PHP-mixed-{$this->boundary_hash}\"";
     }
 
+    private function prepare_base64_attachments(){
+      foreach($this->base64_attachments as $attachment){
+
+        $this->body .= "--PHP-mixed-{$this->boundary_hash}\n";
+        $this->body .= "Content-Type: application/octet-stream; name=\"{$attachment['name']}\"\n";
+        $this->body .= "Content-Transfer-Encoding: base64\n";
+        $this->body .= "Content-Disposition: attachment\n\n";
+        $this->body .= chunk_split($attachment['data']);
+        $this->body .= "\n\n";
+      }
+      $this->body .= "--PHP-mixed-{$this->boundary_hash}--\n\n";
+    }
+	
     private function prepare_attachments(){
       foreach($this->attachments as $attachment){
         $file_name  = basename($attachment);
@@ -153,7 +172,7 @@
       }
       $this->body .= "--PHP-mixed-{$this->boundary_hash}--\n\n";
     }
-
+	
 
     private function prepare_text(){
       $this->body .= "--PHP-alt-{$this->boundary_hash}\n";
@@ -171,5 +190,3 @@
 
 
   }
-
-?>
