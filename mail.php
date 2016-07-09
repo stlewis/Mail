@@ -133,8 +133,6 @@
     private function set_default_headers(){
       $this->headers[] = 'MIME-Version: 1.0';
       $this->headers[] = "From: {$this->from}";
-      $this->headers[] = "To: {$this->to}";
-      $this->headers[] = "Subject: {$this->subject}";
       # We'll assume a multi-part message so that we can include an HTML and a text version of the email at the
       # very least. If there are attachments, we'll be doing the same thing.
       $this->headers[] = "Content-type: multipart/mixed; boundary=\"PHP-mixed-{$this->boundary_hash}\"";
