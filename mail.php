@@ -42,32 +42,32 @@
     /**
     * @var string $body The complete body of the email that will be sent, including all mixed content.
     **/ 
-    public $body;
+    private $body;
 
     /**
     * @var array $attachments  An array of file paths pointing to the attachments that should be included with this email.
     **/
-    public $attachments;
+    private $attachments;
     
     /**
     * @var array $headers An array of the headers that will be included in this email.
     **/ 
-    public $headers;
+    private $headers;
 
     /**
     * @var string $header_string The string, (and therefore final), representation of the headers for this email message.
     **/ 
-    public $header_string;
+    private $header_string;
 
     /**
     * @var string $boundary_hash The string that acts as a separator between the various mixed parts of the email message.
     **/  
-    public $boundary_hash;
+    private $boundary_hash;
 
     /**
     * @var boolean $sent Whether or not this email message was successfully sent.
     **/
-    public $sent;
+    private $sent;
 
     
     /**
@@ -77,7 +77,6 @@
     * The body can be left blank.
     **/
     public function __construct($to, $from, $subject, $text_content = "", $html_content = ""){
-      date_default_timezone_set('America/Los_Angeles');
       $this->to            = $to;
       $this->from          = $from;
       $this->subject       = $this->convert_utf8($subject);
