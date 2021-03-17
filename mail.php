@@ -176,15 +176,15 @@
     private function prepare_text(){
       $this->body .= "--PHP-alt-{$this->boundary_hash}\n";
       $this->body .= "Content-Type: text/plain; charset=\"utf-8\"\n";
-      $this->body .= "Content-Transfer-Encoding: 8bit\n\n";
-      $this->body .= $this->text_content."\n\n";
+      $this->body .= "Content-Transfer-Encoding: base64\n\n";
+      $this->body .= chunk_split(base64_encode($this->text_content))."\n\n";
     }
 
     private function prepare_html(){
       $this->body .= "--PHP-alt-{$this->boundary_hash}\n";
       $this->body .= "Content-Type: text/html; charset=\"utf-8\"\n";
-      $this->body .= "Content-Transfer-Encoding: 8bit\n\n";
-      $this->body .= $this->html_content."\n\n";
+      $this->body .= "Content-Transfer-Encoding: base64\n\n";
+      $this->body .= chunk_split(base64_encode($this->html_content))."\n\n";
     }
     //convert to  utf8 
     private function convert_utf8($subject){
